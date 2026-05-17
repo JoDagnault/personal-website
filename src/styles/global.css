@@ -1,4 +1,13 @@
+:root {
+  color-scheme: light dark;
+  --font-body: system-ui, sans-serif;
+  --color-background: light-dark(#f7f4ee, #111116);
+  --color-text: light-dark(#111116, #f7f4ee);
+  --color-accent: light-dark(#85d685, #85d685);
+}
 
 body {
-  background: #1c1c20;
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
