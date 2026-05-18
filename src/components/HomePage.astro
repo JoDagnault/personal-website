@@ -1,0 +1,30 @@
+---
+import type { Lang } from "../i18n/config";
+import { ui } from "../i18n/ui";
+import Hero from "./Hero.astro";
+import AboutMe from "./about-me/AboutMe.astro";
+import "../styles/global.css";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const homeContent = ui[lang];
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{homeContent.siteTitle}</title>
+  </head>
+  <body>
+    <Hero lang={lang} />
+    <hr />
+    <AboutMe lang={lang} />
+  </body>
+</html>

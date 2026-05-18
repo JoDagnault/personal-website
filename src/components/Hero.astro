@@ -1,11 +1,19 @@
 ---
+import type { Lang } from "../i18n/config";
+import { ui } from "../i18n/ui";
 
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const heroContent = ui[lang].hero;
 ---
 
 <section class="hero-section">
   <div class="hero-content">
-    <h1 class="hero-name">Jonathan Dagnault</h1>
-    <p class="hero-description">Software Developer</p>
+    <h1 class="hero-name">{heroContent.name}</h1>
+    <p class="hero-description">{heroContent.description}</p>
   </div>
 </section>
 
