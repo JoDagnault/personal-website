@@ -3,6 +3,7 @@ import { defaultLocale, localePaths, locales, type Locale } from "../i18n/config
 import { ui } from "../i18n/ui";
 import Hero from "./Hero.astro";
 import AboutMe from "./about-me/AboutMe.astro";
+import Header from "./header/Header.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -35,6 +36,7 @@ const localeUrl = (targetLocale: Locale) =>
   <body>
     <Hero locale={locale} />
     <hr />
+    <Header locale={locale} />
     <AboutMe locale={locale} />
   </body>
 </html>
