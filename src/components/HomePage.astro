@@ -11,7 +11,8 @@ interface Props {
 
 const { locale } = Astro.props;
 const homeContent = ui[locale];
-const canonicalPath = localePaths[locale];
+const localeUrl = (targetLocale: Locale) =>
+  new URL(localePaths[targetLocale], Astro.site).toString();
 ---
 
 <html lang={locale}>
@@ -22,13 +23,13 @@ const canonicalPath = localePaths[locale];
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={homeContent.metaDescription} />
-    <link rel="canonical" href={canonicalPath} />
+    <link rel="canonical" href={localeUrl(locale)} />
     {
       locales.map((alternateLocale) => (
-        <link rel="alternate" hreflang={alternateLocale} href={localePaths[alternateLocale]} />
+        <link rel="alternate" hreflang={alternateLocale} href={localeUrl(alternateLocale)} />
       ))
     }
-    <link rel="alternate" hreflang="x-default" href={localePaths[defaultLocale]} />
+    <link rel="alternate" hreflang="x-default" href={localeUrl(defaultLocale)} />
     <title>{homeContent.siteTitle}</title>
   </head>
   <body>

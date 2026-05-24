@@ -11,5 +11,5 @@ export const defaultLocale = "en" satisfies Locale;
 
 export const localePaths = {
   en: "/",
-  fr: "/fr",
+  fr: "/fr/",
 } as const satisfies Record<Locale, string>;
