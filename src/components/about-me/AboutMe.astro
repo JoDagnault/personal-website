@@ -17,21 +17,16 @@ const AboutMeContent = aboutContentByLang[locale];
 ---
 
 <section class="about-me-section">
-  <p class="about-me-description">
+  <div class="about-me-description">
     <AboutMeContent />
-  </p>
+  </div>
 </section>
 
 <style>
-  .about-me-section {
-    background-color: var(--color-background);
-  }
-
   .about-me-description {
     font-size: clamp(1rem, 3vw, 1.5rem);
     text-align: center;
-    line-height: 1.6;
-    color: var(--color-text-secondary);
+    line-height: 2;
   }
 
   .about-me-description :global(strong) {
