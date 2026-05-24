@@ -1,37 +1,32 @@
 ---
-import type { Lang } from "../../i18n/config";
+import type { Locale } from "../../i18n/config";
 import AboutMeContentEn from "./AboutMeContent.en.astro";
 import AboutMeContentFr from "./AboutMeContent.fr.astro";
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
 const aboutContentByLang = {
   en: AboutMeContentEn,
   fr: AboutMeContentFr,
-} satisfies Record<Lang, typeof AboutMeContentEn>;
+} satisfies Record<Locale, typeof AboutMeContentEn>;
 
-const { lang } = Astro.props;
-const AboutMeContent = aboutContentByLang[lang];
+const { locale } = Astro.props;
+const AboutMeContent = aboutContentByLang[locale];
 ---
 
 <section class="about-me-section">
-  <p class="about-me-description">
+  <div class="about-me-description">
     <AboutMeContent />
-  </p>
+  </div>
 </section>
 
 <style>
-  .about-me-section {
-    background-color: var(--color-background);
-  }
-
   .about-me-description {
     font-size: clamp(1rem, 3vw, 1.5rem);
     text-align: center;
-    line-height: 1.6;
-    color: var(--color-text-secondary);
+    line-height: 2;
   }
 
   .about-me-description :global(strong) {

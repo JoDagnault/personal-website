@@ -1,12 +1,13 @@
 import { defineConfig } from "astro/config";
+import { defaultLocale, locales } from "./src/i18n/config.ts";
 
 export default defineConfig({
   i18n: {
-    locales: ["en", "fr"],
-    defaultLocale: "en",
+    locales,
+    defaultLocale,
     routing: {
-      prefixDefaultLocale: true,
-      redirectToDefaultLocale: true,
+      prefixDefaultLocale: false,
+      redirectToDefaultLocale: false,
     },
   },
 });

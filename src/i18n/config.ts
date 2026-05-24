@@ -1,8 +1,15 @@
-export const languages = {
+export const localeNames = {
   en: "English",
   fr: "Français",
 } as const;
 
-export type Lang = keyof typeof languages;
+export type Locale = keyof typeof localeNames;
 
-export const defaultLang: Lang = "en";
+export const locales = Object.keys(localeNames) as Locale[];
+
+export const defaultLocale = "en" satisfies Locale;
+
+export const localePaths = {
+  en: "/",
+  fr: "/fr",
+} as const satisfies Record<Locale, string>;
