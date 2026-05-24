@@ -1,5 +1,13 @@
 import type { Locale } from "./config";
 
+type UiTranslations = {
+  siteTitle: string;
+  hero: {
+    name: string;
+    description: string;
+  };
+};
+
 export const ui = {
   en: {
     siteTitle: "Jonathan Dagnault",
@@ -15,4 +23,4 @@ export const ui = {
       description: "Développeur logiciel",
     },
   },
-} satisfies Record<Locale, object>;
+} satisfies Record<Locale, UiTranslations>;
