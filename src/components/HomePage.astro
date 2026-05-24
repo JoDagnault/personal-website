@@ -1,5 +1,5 @@
 ---
-import type { Locale } from "../i18n/config";
+import { defaultLocale, localePaths, locales, type Locale } from "../i18n/config";
 import { ui } from "../i18n/ui";
 import Hero from "./Hero.astro";
 import AboutMe from "./about-me/AboutMe.astro";
@@ -11,6 +11,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const homeContent = ui[locale];
+const canonicalPath = localePaths[locale];
 ---
 
 <html lang={locale}>
@@ -20,6 +21,14 @@ const homeContent = ui[locale];
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={homeContent.metaDescription} />
+    <link rel="canonical" href={canonicalPath} />
+    {
+      locales.map((alternateLocale) => (
+        <link rel="alternate" hreflang={alternateLocale} href={localePaths[alternateLocale]} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={localePaths[defaultLocale]} />
     <title>{homeContent.siteTitle}</title>
   </head>
   <body>
