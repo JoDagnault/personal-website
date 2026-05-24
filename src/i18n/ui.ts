@@ -1,4 +1,4 @@
-import type { Lang } from "./config";
+import type { Locale } from "./config";
 
 export const ui = {
   en: {
@@ -15,4 +15,4 @@ export const ui = {
       description: "Développeur logiciel",
     },
   },
-} satisfies Record<Lang, object>;
+} satisfies Record<Locale, object>;
