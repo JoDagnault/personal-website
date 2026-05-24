@@ -5,19 +5,3 @@
   --color-text: #f7f4ee;
   --color-accent: #85d685;
 }
-
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-background);
-  color: var(--color-text);
-  max-width: 80vw;
-  margin: 0 auto;
-}
-
-hr {
-  height: 1px;
-  border: 0;
-  border-top: 1px solid var(--color-text);
-  width: 80%;
-  margin-bottom: 50px;
-}

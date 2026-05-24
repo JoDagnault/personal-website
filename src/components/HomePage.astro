@@ -37,3 +37,20 @@ const canonicalPath = localePaths[locale];
     <AboutMe locale={locale} />
   </body>
 </html>
+
+<style>
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    max-width: 80vw;
+    margin: auto;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-text);
+    width: 80%;
+    margin-bottom: clamp(3rem, 5vw, 4rem);
+  }
+</style>
