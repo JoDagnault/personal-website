@@ -1,0 +1,69 @@
+---
+import { localeNames, localePaths, type Locale } from "../../i18n/config";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<div class="language-picker">
+  <button class="language-picker-button">{localeNames[locale]}</button>
+  <ul class="language-picker-menu" hidden>
+    {
+      Object.entries(localeNames).map(([key, name]) => (
+        <li class="language-picker-menu-item">
+          <a class="language-picker-menu-link" href={localePaths[key as Locale]}>
+            {name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .language-picker-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .language-picker-button:hover {
+    text-decoration: underline;
+  }
+
+  .language-picker-menu {
+    position: absolute;
+    list-style: none;
+    border: 1px solid #5c5c5c;
+    background-color: #262626;
+    width: 10rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .language-picker-menu-item:hover {
+    background-color: #424242;
+  }
+
+  .language-picker-menu-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+</style>
+
+<script>
+  const languagePickerButton =
+    document.querySelector<HTMLButtonElement>(".language-picker-button")!;
+
+  const languagePickerMenu = document.querySelector<HTMLUListElement>(".language-picker-menu")!;
+
+  languagePickerButton.addEventListener("click", () => {
+    languagePickerMenu.hidden = !languagePickerMenu.hidden;
+  });
+</script>

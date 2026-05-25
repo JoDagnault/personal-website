@@ -34,9 +34,9 @@ const localeUrl = (targetLocale: Locale) =>
     <title>{homeContent.siteTitle}</title>
   </head>
   <body>
+    <Header locale={locale} />
     <Hero locale={locale} />
     <hr />
-    <Header locale={locale} />
     <AboutMe locale={locale} />
   </body>
 </html>

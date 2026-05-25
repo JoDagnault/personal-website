@@ -1,5 +1,6 @@
 ---
 import type { Locale } from "../../i18n/config";
+import LanguagePicker from "./LanguagePicker.astro";
 
 interface Props {
   locale: Locale;
@@ -8,6 +9,16 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<header></header>
+<header>
+  <LanguagePicker locale={locale} />
+</header>
 
-<style></style>
+<style>
+  header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+  }
+</style>
+
+<script></script>
