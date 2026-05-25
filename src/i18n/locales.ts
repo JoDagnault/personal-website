@@ -13,3 +13,11 @@ export const localePaths = {
   en: "/",
   fr: "/fr/",
 } as const satisfies Record<Locale, string>;
+
+export const resolveLocale = (currentLocale: string | undefined): Locale => {
+  if (locales.includes(currentLocale as Locale)) {
+    return currentLocale as Locale;
+  }
+
+  return defaultLocale;
+};

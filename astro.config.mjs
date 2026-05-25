@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import { defaultLocale, locales } from "./src/i18n/config.ts";
+import { defaultLocale, locales } from "./src/i18n/locales.ts";
 
 export default defineConfig({
   site: "https://jodagnault.com/",

@@ -1,0 +1,84 @@
+---
+import { localeNames, localePaths, resolveLocale, type Locale } from "../../i18n/locales";
+
+const locale = resolveLocale(Astro.currentLocale);
+---
+
+<div class="language-picker">
+  <button class="language-picker-button" aria-expanded="false">{localeNames[locale]}</button>
+  <ul class="language-picker-menu" hidden>
+    {
+      Object.entries(localeNames).map(([key, name]) => (
+        <li class="language-picker-menu-item">
+          <a
+            class="language-picker-menu-link"
+            aria-current={key === locale ? "true" : undefined}
+            href={localePaths[key as Locale]}
+          >
+            {name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .language-picker {
+    position: relative;
+    display: flex;
+  }
+
+  .language-picker-button {
+    border: none;
+    border-radius: 0.5rem;
+    background: none;
+    color: var(--color-text);
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0.5rem 0.75rem;
+    height: 100%;
+  }
+
+  .language-picker-menu {
+    position: absolute;
+    list-style: none;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-background);
+    min-width: 9rem;
+    width: max-content;
+    padding: 0;
+    margin: 0;
+    top: calc(100% + 0.35rem);
+    right: 0;
+  }
+
+  .language-picker-button:hover,
+  .language-picker-menu-link:hover,
+  .language-picker-button[aria-expanded="true"],
+  .language-picker-menu-link[aria-current="true"] {
+    color: var(--color-accent);
+  }
+
+  .language-picker-menu-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+</style>
+
+<script>
+  const languagePickerButton =
+    document.querySelector<HTMLButtonElement>(".language-picker-button")!;
+
+  const languagePickerMenu = document.querySelector<HTMLUListElement>(".language-picker-menu")!;
+
+  languagePickerButton.addEventListener("click", () => {
+    const isOpen = !languagePickerMenu.hidden;
+
+    languagePickerMenu.hidden = isOpen;
+    languagePickerButton.setAttribute("aria-expanded", String(!isOpen));
+  });
+</script>
