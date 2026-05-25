@@ -5,7 +5,7 @@ const locale = resolveLocale(Astro.currentLocale);
 ---
 
 <div class="language-picker">
-  <button class="language-picker-button">{localeNames[locale]}</button>
+  <button class="language-picker-button" aria-expanded="false">{localeNames[locale]}</button>
   <ul class="language-picker-menu" hidden>
     {
       Object.entries(localeNames).map(([key, name]) => (
@@ -25,10 +25,6 @@ const locale = resolveLocale(Astro.currentLocale);
     display: flex;
   }
 
-  .language-picker:hover {
-    background-color: #424242;
-  }
-
   .language-picker-button {
     border: none;
     background: none;
@@ -37,6 +33,10 @@ const locale = resolveLocale(Astro.currentLocale);
     font-size: inherit;
     padding: 0 1rem;
     height: 100%;
+  }
+
+  .language-picker-button:hover {
+    background-color: #424242;
   }
 
   .language-picker-menu {
@@ -51,7 +51,8 @@ const locale = resolveLocale(Astro.currentLocale);
     right: 0;
   }
 
-  .language-picker-menu-item:hover {
+  .language-picker-menu-item:hover,
+  .language-picker-button[aria-expanded="true"] {
     background-color: #424242;
   }
 
@@ -70,6 +71,9 @@ const locale = resolveLocale(Astro.currentLocale);
   const languagePickerMenu = document.querySelector<HTMLUListElement>(".language-picker-menu")!;
 
   languagePickerButton.addEventListener("click", () => {
-    languagePickerMenu.hidden = !languagePickerMenu.hidden;
+    const isOpen = !languagePickerMenu.hidden;
+
+    languagePickerMenu.hidden = isOpen;
+    languagePickerButton.setAttribute("aria-expanded", String(!isOpen));
   });
 </script>
