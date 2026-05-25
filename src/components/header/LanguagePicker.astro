@@ -10,7 +10,11 @@ const locale = resolveLocale(Astro.currentLocale);
     {
       Object.entries(localeNames).map(([key, name]) => (
         <li class="language-picker-menu-item">
-          <a class="language-picker-menu-link" href={localePaths[key as Locale]}>
+          <a
+            class="language-picker-menu-link"
+            aria-current={key === locale ? "true" : undefined}
+            href={localePaths[key as Locale]}
+          >
             {name}
           </a>
         </li>
@@ -27,33 +31,34 @@ const locale = resolveLocale(Astro.currentLocale);
 
   .language-picker-button {
     border: none;
+    border-radius: 0.5rem;
     background: none;
     color: var(--color-text);
     cursor: pointer;
     font-size: inherit;
-    padding: 0 1rem;
+    padding: 0.5rem 0.75rem;
     height: 100%;
-  }
-
-  .language-picker-button:hover {
-    background-color: #424242;
   }
 
   .language-picker-menu {
     position: absolute;
     list-style: none;
-    border: 1px solid #5c5c5c;
-    background-color: #262626;
-    width: 10rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-background);
+    min-width: 9rem;
+    width: max-content;
     padding: 0;
     margin: 0;
-    top: 100%;
+    top: calc(100% + 0.35rem);
     right: 0;
   }
 
-  .language-picker-menu-item:hover,
-  .language-picker-button[aria-expanded="true"] {
-    background-color: #424242;
+  .language-picker-button:hover,
+  .language-picker-menu-link:hover,
+  .language-picker-button[aria-expanded="true"],
+  .language-picker-menu-link[aria-current="true"] {
+    color: var(--color-accent);
   }
 
   .language-picker-menu-link {
