@@ -1,11 +1,7 @@
 ---
-import { localeNames, localePaths, type Locale } from "../../i18n/config";
+import { localeNames, localePaths, resolveLocale, type Locale } from "../../i18n/locales";
 
-interface Props {
-  locale: Locale;
-}
-
-const { locale } = Astro.props;
+const locale = resolveLocale(Astro.currentLocale);
 ---
 
 <div class="language-picker">

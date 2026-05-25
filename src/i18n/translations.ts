@@ -1,6 +1,6 @@
-import type { Locale } from "./config";
+import type { Locale } from "./locales";
 
-type UiTranslations = {
+type Translations = {
   siteTitle: string;
   metaDescription: string;
   hero: {
@@ -9,7 +9,7 @@ type UiTranslations = {
   };
 };
 
-export const ui = {
+export const translations = {
   en: {
     siteTitle: "Jonathan Dagnault",
     metaDescription:
@@ -28,4 +28,4 @@ export const ui = {
       description: "Développeur logiciel full-stack",
     },
   },
-} satisfies Record<Locale, UiTranslations>;
+} satisfies Record<Locale, Translations>;
