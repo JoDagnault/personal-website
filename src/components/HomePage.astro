@@ -28,6 +28,12 @@ const localeUrl = (targetLocale: Locale) =>
     }
     <link rel="alternate" hreflang="x-default" href={localeUrl(defaultLocale)} />
     <title>{homeContent.siteTitle}</title>
+
+    <script is:inline>
+      const savedTheme = localStorage.getItem("theme");
+      document.documentElement.dataset.theme =
+        savedTheme === "dark" || savedTheme === "light" ? savedTheme : "dark";
+    </script>
   </head>
   <body>
     <Header />

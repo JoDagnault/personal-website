@@ -1,8 +1,19 @@
 :root {
-  color-scheme: dark;
   --font-body: system-ui, sans-serif;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
   --color-background: #111116;
   --color-text: #f7f4ee;
   --color-accent: #85d685;
   --color-border: #4d4d4d;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-background: #ffffff;
+  --color-text: #111116;
+  --color-accent: #2f7d32;
+  --color-border: #d0d0d0;
 }
