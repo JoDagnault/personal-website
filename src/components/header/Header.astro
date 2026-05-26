@@ -1,8 +1,10 @@
 ---
 import LanguagePicker from "./LanguagePicker.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header>
+  <ThemeToggle />
   <LanguagePicker />
 </header>
 
@@ -11,5 +13,24 @@ import LanguagePicker from "./LanguagePicker.astro";
     display: flex;
     justify-content: flex-end;
     min-height: 2rem;
+  }
+
+  :global(.header-button) {
+    border: none;
+    border-radius: 0.5rem;
+    background: none;
+    color: var(--color-text);
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0.5rem 0.75rem;
+    height: 100%;
+  }
+
+  :global(.header-button:hover) {
+    color: var(--color-accent);
+  }
+
+  :global(.header-button[aria-expanded="true"]) {
+    color: var(--color-accent);
   }
 </style>
