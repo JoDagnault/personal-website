@@ -1,12 +1,23 @@
 ---
-
+import { Moon, Sun } from "@lucide/astro";
 ---
 
 <div class="theme-toggle">
-  <button class="header-button theme-toggle-button">Toggle Theme</button>
+  <button class="header-button theme-toggle-button">
+    <Sun class="theme-icon-light" />
+    <Moon class="theme-icon-dark" />
+  </button>
 </div>
 
-<style></style>
+<style>
+  :global([data-theme="dark"]) .theme-icon-light {
+    display: none;
+  }
+
+  :global([data-theme="light"]) .theme-icon-dark {
+    display: none;
+  }
+</style>
 
 <script>
   import { toggleTheme } from "../../theme";
