@@ -3,7 +3,17 @@
 ---
 
 <div class="theme-toggle">
-  <button class="header-button">Toggle Theme</button>
+  <button class="header-button theme-toggle-button">Toggle Theme</button>
 </div>
 
 <style></style>
+
+<script>
+  import { toggleTheme } from "../../theme";
+
+  const themeToggleButton = document.querySelector(".theme-toggle-button")!;
+
+  themeToggleButton.addEventListener("click", () => {
+    toggleTheme();
+  });
+</script>
