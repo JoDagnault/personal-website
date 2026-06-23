@@ -38,17 +38,3 @@ const locale = resolveLocale(Astro.currentLocale);
     color: var(--text-color);
   }
 </style>
-
-<script>
-  const languagePickerButton =
-    document.querySelector<HTMLButtonElement>(".language-picker-button")!;
-
-  const languagePickerMenu = document.querySelector<HTMLUListElement>(".language-picker-menu")!;
-
-  languagePickerButton.addEventListener("click", () => {
-    const isOpen = !languagePickerMenu.hidden;
-
-    languagePickerMenu.hidden = isOpen;
-    languagePickerButton.setAttribute("aria-expanded", String(!isOpen));
-  });
-</script>
