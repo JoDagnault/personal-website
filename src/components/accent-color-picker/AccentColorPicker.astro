@@ -1,0 +1,13 @@
+---
+import ColorPill from "./ColorPill.astro";
+---
+
+<div class="accent-color-picker header-menu-root">
+  <button class="accent-color-picker-button header-button" aria-expanded="false">
+    <ColorPill color="var(--accent-color)" />
+  </button>
+
+  <ul class="accent-color-picker-menu header-menu" hidden>
+    <li></li>
+  </ul>
+</div>

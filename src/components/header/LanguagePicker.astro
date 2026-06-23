@@ -4,11 +4,11 @@ import { localeNames, localePaths, resolveLocale, type Locale } from "../../i18n
 const locale = resolveLocale(Astro.currentLocale);
 ---
 
-<div class="language-picker">
+<div class="language-picker header-menu-root">
   <button class="header-button language-picker-button" aria-expanded="false"
     >{localeNames[locale]}</button
   >
-  <ul class="language-picker-menu" hidden>
+  <ul class="language-picker-menu header-menu" hidden>
     {
       Object.entries(localeNames).map(([key, name]) => (
         <li class="language-picker-menu-item">
@@ -26,24 +26,6 @@ const locale = resolveLocale(Astro.currentLocale);
 </div>
 
 <style>
-  .language-picker {
-    position: relative;
-  }
-
-  .language-picker-menu {
-    position: absolute;
-    list-style: none;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    background-color: var(--background-color);
-    min-width: 9rem;
-    width: max-content;
-    padding: 0;
-    margin: 0;
-    top: calc(100% + 0.35rem);
-    right: 0;
-  }
-
   .language-picker-menu-link:hover,
   .language-picker-menu-link[aria-current="true"] {
     color: var(--accent-color);

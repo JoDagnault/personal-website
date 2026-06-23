@@ -1,9 +1,11 @@
 ---
 import LanguagePicker from "./LanguagePicker.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import AccentColorPicker from "../accent-color-picker/AccentColorPicker.astro";
 ---
 
 <header>
+  <AccentColorPicker />
   <ThemeToggle />
   <LanguagePicker />
 </header>
@@ -32,5 +34,23 @@ import ThemeToggle from "./ThemeToggle.astro";
 
   :global(.header-button[aria-expanded="true"]) {
     border: 2px solid var(--accent-color);
+  }
+
+  :global(.header-menu-root) {
+    position: relative;
+  }
+
+  :global(.header-menu) {
+    position: absolute;
+    list-style: none;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--background-color);
+    min-width: 9rem;
+    width: max-content;
+    padding: 0;
+    margin: 0;
+    top: calc(100% + 0.35rem);
+    right: 0;
   }
 </style>
