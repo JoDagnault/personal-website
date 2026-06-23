@@ -6,7 +6,7 @@
   color-scheme: dark;
   --color-background: #111116;
   --color-text: #f7f4ee;
-  --color-accent: #85d685;
+  --accent-color: #85d685;
   --color-border: #4d4d4d;
 }
 
@@ -14,6 +14,6 @@
   color-scheme: light;
   --color-background: #ffffff;
   --color-text: #111116;
-  --color-accent: #2f7d32;
+  --accent-color: #2f7d32;
   --color-border: #d0d0d0;
 }
