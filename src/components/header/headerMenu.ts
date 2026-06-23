@@ -5,23 +5,43 @@ type HeaderMenu = {
 };
 
 export const initHeaderMenus = () => {
-  const menuRoots = document.querySelectorAll<HTMLDivElement>(".header-menu-root");
-  let menus: HeaderMenu[] = [];
+  const headerControls = document.querySelectorAll<HTMLElement>(".header-control");
+  const menus: HeaderMenu[] = [];
 
-  for (const menuRoot of menuRoots) {
-    const menuButton = menuRoot.querySelector<HTMLButtonElement>(".header-button");
-    const menuPanel = menuRoot.querySelector<HTMLUListElement>(".header-menu");
+  for (const headerControl of headerControls) {
+    const headerButton = headerControl.querySelector<HTMLButtonElement>(".header-button");
 
-    if (!menuPanel || !menuButton) {
+    if (!headerButton) {
       continue;
     }
 
-    const menu: HeaderMenu = { root: menuRoot, button: menuButton, panel: menuPanel };
-    menus.push(menu);
+    if (headerControl.dataset.headerControl === "action") {
+      headerButton.addEventListener("click", () => {
+        closeAllMenus(menus);
+      });
 
-    menuButton.addEventListener("click", () => {
-      toggleMenu(menu, menus);
-    });
+      continue;
+    }
+
+    if (headerControl.dataset.headerControl === "menu") {
+      const headerMenu = headerControl.querySelector<HTMLElement>(".header-menu");
+
+      if (!headerMenu) {
+        continue;
+      }
+
+      const menu: HeaderMenu = {
+        root: headerControl,
+        button: headerButton,
+        panel: headerMenu,
+      };
+
+      menus.push(menu);
+
+      headerButton.addEventListener("click", () => {
+        toggleMenu(menu, menus);
+      });
+    }
   }
 };
 
