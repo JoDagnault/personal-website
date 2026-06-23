@@ -16,7 +16,8 @@ import ThemeToggle from "./ThemeToggle.astro";
   }
 
   :global(.header-button) {
-    border: none;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
     background: none;
     color: var(--color-text);
     cursor: pointer;
@@ -26,10 +27,10 @@ import ThemeToggle from "./ThemeToggle.astro";
   }
 
   :global(.header-button:hover) {
-    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
   }
 
   :global(.header-button[aria-expanded="true"]) {
-    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
   }
 </style>
