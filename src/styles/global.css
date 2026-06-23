@@ -7,7 +7,7 @@
   --color-background: #111116;
   --color-text: #f7f4ee;
   --accent-color: #85d685;
-  --color-border: #4d4d4d;
+  --border-color: #4d4d4d;
 }
 
 :root[data-theme="light"] {
@@ -15,5 +15,5 @@
   --color-background: #ffffff;
   --color-text: #111116;
   --accent-color: #2f7d32;
-  --color-border: #d0d0d0;
+  --border-color: #d0d0d0;
 }
