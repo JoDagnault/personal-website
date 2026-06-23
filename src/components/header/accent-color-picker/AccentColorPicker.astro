@@ -1,5 +1,6 @@
 ---
 import ColorPill from "./ColorPill.astro";
+import { accentColors } from "./accentColors.ts";
 ---
 
 <div class="accent-color-picker header-control" data-header-control="menu">
@@ -8,6 +9,12 @@ import ColorPill from "./ColorPill.astro";
   </button>
 
   <ul class="accent-color-picker-menu header-menu" hidden>
-    <li></li>
+    {
+      accentColors.map((accentColor) => (
+        <li class="accent-color-picker-menu-item">
+          <ColorPill color={`var(--accent-${accentColor.id})`} />
+        </li>
+      ))
+    }
   </ul>
 </div>
