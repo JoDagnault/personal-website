@@ -27,11 +27,7 @@ import { accentColors } from "./accentColors.ts";
 
 <style>
   .accent-color-picker-menu:not([hidden]) {
-    display: grid;
-    grid-template-columns: 2rem;
-    justify-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
+    display: block;
     min-width: 0;
   }
 
@@ -39,10 +35,15 @@ import { accentColors } from "./accentColors.ts";
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
     border: 0;
     background: none;
     cursor: pointer;
+  }
+
+  .accent-color-picker-menu-button:hover {
+    background-color: var(--hover-background-color);
   }
 </style>

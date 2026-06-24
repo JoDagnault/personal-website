@@ -26,9 +26,12 @@ const locale = resolveLocale(Astro.currentLocale);
 </div>
 
 <style>
-  .language-picker-menu-link:hover,
   .language-picker-menu-link[aria-current="true"] {
     color: var(--accent-color);
+  }
+
+  .language-picker-menu-link:hover {
+    background-color: var(--hover-background-color);
   }
 
   .language-picker-menu-link {

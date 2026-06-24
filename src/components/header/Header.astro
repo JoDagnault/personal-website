@@ -29,7 +29,7 @@ import AccentColorPicker from "./accent-color-picker/AccentColorPicker.astro";
   }
 
   :global(.header-button:hover) {
-    border: 2px solid var(--accent-color);
+    background-color: var(--hover-background-color);
   }
 
   :global(.header-button[aria-expanded="true"]) {
@@ -47,6 +47,7 @@ import AccentColorPicker from "./accent-color-picker/AccentColorPicker.astro";
     border-radius: 0.5rem;
     background-color: var(--background-color);
     box-shadow: 0 0.75rem 1.5rem var(--header-menu-shadow-color);
+    overflow: hidden;
     min-width: 9rem;
     width: max-content;
     padding: 0;

@@ -14,6 +14,7 @@
   --accent-orange: #f3ba7f;
   --accent-color: var(--accent-green);
   --border-color: #4d4d4d;
+  --hover-background-color: #24242b;
   --header-menu-shadow-color: rgb(0 0 0 / 0.45);
 }
 
@@ -29,5 +30,6 @@
   --accent-orange: #ad612f;
   --accent-color: var(--accent-green);
   --border-color: #d0d0d0;
+  --hover-background-color: #f1f1f1;
   --header-menu-shadow-color: rgb(0 0 0 / 0.14);
 }
