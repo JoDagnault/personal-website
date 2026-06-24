@@ -4,12 +4,14 @@ import { translations } from "../i18n/translations";
 import Hero from "./Hero.astro";
 import AboutMe from "./about-me/AboutMe.astro";
 import Header from "./header/Header.astro";
+import { accentColorKey, accentColors } from "./header/accent-color-picker/accentColors";
 import "../styles/global.css";
 
 const locale = resolveLocale(Astro.currentLocale);
 const homeContent = translations[locale];
 const localeUrl = (targetLocale: Locale) =>
   new URL(localePaths[targetLocale], Astro.site).toString();
+const accentColorIds = accentColors.map(({ id }) => id);
 ---
 
 <html lang={locale}>
@@ -29,10 +31,19 @@ const localeUrl = (targetLocale: Locale) =>
     <link rel="alternate" hreflang="x-default" href={localeUrl(defaultLocale)} />
     <title>{homeContent.siteTitle}</title>
 
-    <script is:inline>
+    <script is:inline define:vars={{ accentColorIds, accentColorKey }}>
       const savedTheme = localStorage.getItem("theme");
       document.documentElement.dataset.theme =
         savedTheme === "dark" || savedTheme === "light" ? savedTheme : "dark";
+
+      const savedAccentColor = localStorage.getItem(accentColorKey);
+
+      if (accentColorIds.includes(savedAccentColor)) {
+        document.documentElement.style.setProperty(
+          "--accent-color",
+          `var(--accent-${savedAccentColor})`,
+        );
+      }
     </script>
   </head>
   <body>

@@ -1,6 +1,6 @@
 ---
 import ColorPill from "./ColorPill.astro";
-import { accentColors } from "./accentColors.ts";
+import { accentColorCssVariable, accentColors } from "./accentColors.ts";
 ---
 
 <div class="accent-color-picker header-control" data-header-control="menu">
@@ -17,7 +17,7 @@ import { accentColors } from "./accentColors.ts";
             value={accentColor.id}
             aria-label={accentColor.label}
           >
-            <ColorPill color={`var(--accent-${accentColor.id})`} />
+            <ColorPill color={`var(${accentColorCssVariable(accentColor.id)})`} />
           </button>
         </li>
       ))
@@ -47,3 +47,23 @@ import { accentColors } from "./accentColors.ts";
     background-color: var(--hover-background-color);
   }
 </style>
+
+<script>
+  import { isAccentColorId, setAccentColor } from "./accentColors.ts";
+
+  const colorButtons = document.querySelectorAll<HTMLButtonElement>(
+    ".accent-color-picker-menu-button",
+  );
+
+  for (const colorButton of colorButtons) {
+    colorButton.addEventListener("click", () => {
+      const accentColor = colorButton.value;
+
+      if (!isAccentColorId(accentColor)) {
+        return;
+      }
+
+      setAccentColor(accentColor);
+    });
+  }
+</script>

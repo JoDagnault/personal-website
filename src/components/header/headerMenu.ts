@@ -41,6 +41,22 @@ export const initHeaderMenus = () => {
       headerButton.addEventListener("click", () => {
         toggleMenu(menu, menus);
       });
+
+      headerMenu.addEventListener("click", (event) => {
+        const target = event.target;
+
+        if (!(target instanceof Element)) {
+          return;
+        }
+
+        const menuItemAction = target.closest("a, button");
+
+        if (!menuItemAction || !headerMenu.contains(menuItemAction)) {
+          return;
+        }
+
+        closeAllMenus(menus);
+      });
     }
   }
 };

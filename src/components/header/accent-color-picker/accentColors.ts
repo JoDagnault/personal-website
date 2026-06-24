@@ -32,4 +32,20 @@ export const accentColors = [
 
 export type AccentColorId = (typeof accentColors)[number]["id"];
 
-export const defaultAccentColorId: AccentColorId = "green";
+export const accentColorKey = "accent-color";
+
+export const isAccentColorId = (accentColor: string): accentColor is AccentColorId => {
+  return accentColors.some(({ id }) => id === accentColor);
+};
+
+export const setAccentColor = (accentColor: AccentColorId) => {
+  localStorage.setItem(accentColorKey, accentColor);
+  document.documentElement.style.setProperty(
+    "--accent-color",
+    `var(${accentColorCssVariable(accentColor)})`,
+  );
+};
+
+export const accentColorCssVariable = (accentColor: AccentColorId) => {
+  return `--accent-${accentColor}`;
+};
