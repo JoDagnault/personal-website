@@ -12,7 +12,13 @@ import { accentColors } from "./accentColors.ts";
     {
       accentColors.map((accentColor) => (
         <li class="accent-color-picker-menu-item">
-          <ColorPill color={`var(--accent-${accentColor.id})`} />
+          <button
+            class="accent-color-picker-menu-button"
+            value={accentColor.id}
+            aria-label={accentColor.label}
+          >
+            <ColorPill color={`var(--accent-${accentColor.id})`} />
+          </button>
         </li>
       ))
     }
@@ -27,5 +33,16 @@ import { accentColors } from "./accentColors.ts";
     gap: 0.5rem;
     padding: 0.5rem;
     min-width: 0;
+  }
+
+  .accent-color-picker-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0;
+    background: none;
+    cursor: pointer;
   }
 </style>
