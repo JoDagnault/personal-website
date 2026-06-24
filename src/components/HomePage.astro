@@ -6,6 +6,7 @@ import AboutMe from "./about-me/AboutMe.astro";
 import Header from "./header/Header.astro";
 import { accentColorKey, accentColors } from "./header/accent-color-picker/accentColors";
 import "../styles/global.css";
+import Projects from "./projects/Projects.astro";
 
 const locale = resolveLocale(Astro.currentLocale);
 const homeContent = translations[locale];
@@ -48,9 +49,13 @@ const accentColorIds = accentColors.map(({ id }) => id);
   </head>
   <body>
     <Header />
-    <Hero />
-    <hr />
-    <AboutMe />
+    <main>
+      <Hero />
+      <hr class="section-divider" />
+      <AboutMe />
+      <hr class="section-divider" />
+      <Projects />
+    </main>
   </body>
 </html>
 
@@ -63,10 +68,10 @@ const accentColorIds = accentColors.map(({ id }) => id);
     margin: auto;
   }
 
-  hr {
+  .section-divider {
     border: 0;
     border-top: 1px solid var(--text-color);
     width: 80%;
-    margin-bottom: clamp(3rem, 5vw, 4rem);
+    margin: clamp(3.5rem, 6vw, 5rem) auto;
   }
 </style>

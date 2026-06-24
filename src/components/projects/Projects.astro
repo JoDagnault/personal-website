@@ -1,0 +1,18 @@
+---
+import { resolveLocale } from "../../i18n/locales.ts";
+import { translations } from "../../i18n/translations.ts";
+
+const locale = resolveLocale(Astro.currentLocale);
+
+const projectsContent = translations[locale].projects;
+---
+
+<h2>{projectsContent.title}</h2>
+
+<style>
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 4rem);
+    text-align: center;
+  }
+</style>

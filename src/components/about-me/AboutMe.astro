@@ -21,7 +21,12 @@ const AboutMeContent = aboutContentByLang[locale];
 <style>
   .about-me-description {
     font-size: clamp(1rem, 3vw, 1.5rem);
+    line-height: 1.5;
     text-align: center;
+  }
+
+  .about-me-description :global(p) {
+    margin: 0;
   }
 
   .about-me-description :global(strong) {

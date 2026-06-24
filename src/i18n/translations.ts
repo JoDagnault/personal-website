@@ -7,6 +7,9 @@ type Translations = {
     name: string;
     description: string;
   };
+  projects: {
+    title: string;
+  };
 };
 
 export const translations = {
@@ -18,6 +21,9 @@ export const translations = {
       name: "Jonathan Dagnault",
       description: "Full-Stack Software Developer",
     },
+    projects: {
+      title: "Projects",
+    },
   },
   fr: {
     siteTitle: "Jonathan Dagnault",
@@ -26,6 +32,9 @@ export const translations = {
     hero: {
       name: "Jonathan Dagnault",
       description: "Développeur logiciel full-stack",
+    },
+    projects: {
+      title: "Projets",
     },
   },
 } satisfies Record<Locale, Translations>;
