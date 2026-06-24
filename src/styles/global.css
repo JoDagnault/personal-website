@@ -14,6 +14,7 @@
   --accent-orange: #f3ba7f;
   --accent-color: var(--accent-green);
   --border-color: #4d4d4d;
+  --header-menu-shadow-color: rgb(0 0 0 / 0.45);
 }
 
 :root[data-theme="light"] {
@@ -28,4 +29,5 @@
   --accent-orange: #ad612f;
   --accent-color: var(--accent-green);
   --border-color: #d0d0d0;
+  --header-menu-shadow-color: rgb(0 0 0 / 0.14);
 }
