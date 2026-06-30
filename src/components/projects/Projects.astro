@@ -1,13 +1,20 @@
 ---
 import { resolveLocale } from "../../i18n/locales.ts";
 import { translations } from "../../i18n/translations.ts";
+import { getCollection } from "astro:content";
 
 const locale = resolveLocale(Astro.currentLocale);
 
 const projectsContent = translations[locale].projects;
+const allProjects = await getCollection("projects", ({ id }) => {
+  return id.startsWith(`${locale}/`);
+});
 ---
 
 <h2>{projectsContent.title}</h2>
+<ul>
+  {allProjects.map((project) => <li>{project.data.title}</li>)}
+</ul>
 
 <style>
   h2 {
