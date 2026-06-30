@@ -3,9 +3,14 @@ import Hero from "./Hero.astro";
 import AboutMe from "./about-me/AboutMe.astro";
 import Layout from "../layouts/Layout.astro";
 import Projects from "./projects/Projects.astro";
+import { resolveLocale } from "../i18n/locales";
+import { translations } from "../i18n/translations";
+
+const locale = resolveLocale(Astro.currentLocale);
+const homeContent = translations[locale];
 ---
 
-<Layout>
+<Layout title={homeContent.siteTitle} description={homeContent.metaDescription}>
   <Hero />
   <hr class="section-divider" />
   <AboutMe />
