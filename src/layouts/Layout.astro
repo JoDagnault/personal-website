@@ -1,0 +1,66 @@
+---
+import { defaultLocale, localePaths, locales, resolveLocale, type Locale } from "../i18n/locales";
+import { translations } from "../i18n/translations";
+import Header from "../components/header/Header.astro";
+import {
+  accentColorKey,
+  accentColors,
+} from "../components/header/accent-color-picker/accentColors";
+import "../styles/global.css";
+
+const locale = resolveLocale(Astro.currentLocale);
+const homeContent = translations[locale];
+const localeUrl = (targetLocale: Locale) =>
+  new URL(localePaths[targetLocale], Astro.site).toString();
+const accentColorIds = accentColors.map(({ id }) => id);
+---
+
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={homeContent.metaDescription} />
+    <link rel="canonical" href={localeUrl(locale)} />
+    {
+      locales.map((alternateLocale) => (
+        <link rel="alternate" hreflang={alternateLocale} href={localeUrl(alternateLocale)} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={localeUrl(defaultLocale)} />
+    <title>{homeContent.siteTitle}</title>
+
+    <script is:inline define:vars={{ accentColorIds, accentColorKey }}>
+      const savedTheme = localStorage.getItem("theme");
+      document.documentElement.dataset.theme =
+        savedTheme === "dark" || savedTheme === "light" ? savedTheme : "dark";
+
+      const savedAccentColor = localStorage.getItem(accentColorKey);
+
+      if (accentColorIds.includes(savedAccentColor)) {
+        document.documentElement.style.setProperty(
+          "--accent-color",
+          `var(--accent-${savedAccentColor})`,
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: var(--font-body), sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    max-width: 80vw;
+    margin: auto;
+  }
+</style>
