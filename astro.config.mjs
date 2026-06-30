@@ -5,12 +5,15 @@ import mdx from "@astrojs/mdx";
 
 export default defineConfig({
   site: "https://jodagnault.com/",
+  redirects: {
+    "/": "/en/",
+  },
 
   i18n: {
     locales,
     defaultLocale,
     routing: {
-      prefixDefaultLocale: false,
+      prefixDefaultLocale: true,
       redirectToDefaultLocale: false,
     },
   },

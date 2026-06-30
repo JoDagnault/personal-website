@@ -10,7 +10,7 @@ export const locales = Object.keys(localeNames) as Locale[];
 export const defaultLocale = "en" satisfies Locale;
 
 export const localePaths = {
-  en: "/",
+  en: "/en/",
   fr: "/fr/",
 } as const satisfies Record<Locale, string>;
 
