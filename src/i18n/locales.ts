@@ -21,3 +21,8 @@ export const resolveLocale = (currentLocale: string | undefined): Locale => {
 
   return defaultLocale;
 };
+
+export const projectPath = (id: string): string => {
+  const [locale, slug] = id.split("/");
+  return `/${locale}/projects/${slug}/`;
+};
