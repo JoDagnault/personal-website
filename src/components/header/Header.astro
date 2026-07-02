@@ -1,8 +1,9 @@
 ---
+import HomeLink from "./HomeLink.astro";
 import LanguagePicker from "./LanguagePicker.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import AccentColorPicker from "./accent-color-picker/AccentColorPicker.astro";
-import type { LocalizedUrls } from "../../i18n/urls.ts";
+import type { LocalizedUrls } from "../../i18n/urls";
 
 interface Props {
   localizedUrls: LocalizedUrls;
@@ -12,6 +13,7 @@ const { localizedUrls } = Astro.props;
 ---
 
 <header>
+  <HomeLink />
   <AccentColorPicker />
   <ThemeToggle />
   <LanguagePicker localizedUrls={localizedUrls} />
@@ -20,8 +22,11 @@ const { localizedUrls } = Astro.props;
 <style>
   header {
     display: flex;
-    justify-content: flex-end;
     min-height: 2rem;
+  }
+
+  header :global(.home-link) {
+    margin-right: auto;
   }
 
   :global(.header-button) {

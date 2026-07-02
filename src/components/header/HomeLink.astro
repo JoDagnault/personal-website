@@ -1,0 +1,28 @@
+---
+import { resolveLocale } from "../../i18n/locales";
+import { translations } from "../../i18n/translations";
+import { localizedHomePageUrls } from "../../i18n/urls";
+
+const currentLocale = resolveLocale(Astro.currentLocale);
+---
+
+<a class="home-link" href={localizedHomePageUrls[currentLocale]}>
+  {translations[currentLocale].siteTitle}
+</a>
+
+<style>
+  .home-link {
+    display: flex;
+    align-items: center;
+    font-size: clamp(0.875rem, 0.7rem + 0.75vw, 1.25rem);
+    font-weight: 600;
+    color: var(--text-color);
+    text-decoration: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .home-link:hover {
+    color: var(--accent-color);
+  }
+</style>
