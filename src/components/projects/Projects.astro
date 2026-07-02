@@ -1,7 +1,8 @@
 ---
-import { projectPath, resolveLocale } from "../../i18n/locales";
+import { resolveLocale } from "../../i18n/locales";
 import { translations } from "../../i18n/translations";
 import { getCollection } from "astro:content";
+import { projectUrl } from "../../i18n/urls.ts";
 
 const locale = resolveLocale(Astro.currentLocale);
 
@@ -16,7 +17,7 @@ const allProjects = await getCollection("projects", ({ id }) => {
   {
     allProjects.map((project) => (
       <li>
-        <a href={projectPath(project.id)}>{project.data.title}</a>
+        <a href={projectUrl(project)}>{project.data.title}</a>
       </li>
     ))
   }

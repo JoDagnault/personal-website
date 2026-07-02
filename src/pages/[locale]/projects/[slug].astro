@@ -2,22 +2,30 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection, render } from "astro:content";
 import ProjectLayout from "../../../layouts/ProjectLayout.astro";
+import { localizedUrlsForProject } from "../../../i18n/urls.ts";
 
 export const getStaticPaths = (async () => {
   const projects = await getCollection("projects");
+
   return projects.map((project) => {
     const [locale, slug] = project.id.split("/");
+    const localizedUrls = localizedUrlsForProject(project.data.key, projects);
+
     return {
       params: { locale, slug },
-      props: { project },
+      props: { project, localizedUrls },
     };
   });
 }) satisfies GetStaticPaths;
 
-const { project } = Astro.props;
+const { project, localizedUrls } = Astro.props;
 const { Content } = await render(project);
 ---
 
-<ProjectLayout title={project.data.title} description={project.data.description}>
+<ProjectLayout
+  title={project.data.title}
+  description={project.data.description}
+  localizedUrls={localizedUrls}
+>
   <Content />
 </ProjectLayout>

@@ -1,15 +1,17 @@
 ---
 import Layout from "./Layout.astro";
+import { type LocalizedUrls } from "../i18n/urls.ts";
 
 interface Props {
   title: string;
   description: string;
+  localizedUrls: LocalizedUrls;
 }
 
-const { title, description } = Astro.props;
+const { title, description, localizedUrls } = Astro.props;
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} localizedUrls={localizedUrls}>
   <h1>{title}</h1>
   <slot />
 </Layout>

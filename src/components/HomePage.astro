@@ -4,13 +4,18 @@ import AboutMe from "./about-me/AboutMe.astro";
 import Layout from "../layouts/Layout.astro";
 import Projects from "./projects/Projects.astro";
 import { resolveLocale } from "../i18n/locales";
+import { localizedHomePageUrls } from "../i18n/urls";
 import { translations } from "../i18n/translations";
 
 const locale = resolveLocale(Astro.currentLocale);
 const homeContent = translations[locale];
 ---
 
-<Layout title={homeContent.siteTitle} description={homeContent.metaDescription}>
+<Layout
+  title={homeContent.siteTitle}
+  description={homeContent.metaDescription}
+  localizedUrls={localizedHomePageUrls}
+>
   <Hero />
   <hr class="section-divider" />
   <AboutMe />

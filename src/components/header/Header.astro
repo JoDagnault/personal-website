@@ -2,12 +2,19 @@
 import LanguagePicker from "./LanguagePicker.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import AccentColorPicker from "./accent-color-picker/AccentColorPicker.astro";
+import type { LocalizedUrls } from "../../i18n/urls.ts";
+
+interface Props {
+  localizedUrls: LocalizedUrls;
+}
+
+const { localizedUrls } = Astro.props;
 ---
 
 <header>
   <AccentColorPicker />
   <ThemeToggle />
-  <LanguagePicker />
+  <LanguagePicker localizedUrls={localizedUrls} />
 </header>
 
 <style>

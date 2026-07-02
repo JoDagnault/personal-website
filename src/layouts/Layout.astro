@@ -1,22 +1,24 @@
 ---
-import { defaultLocale, localePaths, locales, resolveLocale, type Locale } from "../i18n/locales";
+import { defaultLocale, locales, resolveLocale, type Locale } from "../i18n/locales";
 import Header from "../components/header/Header.astro";
 import {
   accentColorKey,
   accentColors,
 } from "../components/header/accent-color-picker/accentColors";
 import "../styles/global.css";
+import type { LocalizedUrls } from "../i18n/urls.ts";
 
 interface Props {
   title: string;
   description: string;
+  localizedUrls: LocalizedUrls;
 }
 
-const { title, description } = Astro.props;
+const { title, description, localizedUrls } = Astro.props;
 
 const locale = resolveLocale(Astro.currentLocale);
-const localeUrl = (targetLocale: Locale) =>
-  new URL(localePaths[targetLocale], Astro.site).toString();
+const absoluteUrl = (targetLocale: Locale) =>
+  new URL(localizedUrls[targetLocale], Astro.site).toString();
 const accentColorIds = accentColors.map(({ id }) => id);
 ---
 
@@ -28,13 +30,13 @@ const accentColorIds = accentColors.map(({ id }) => id);
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <link rel="canonical" href={localeUrl(locale)} />
+    <link rel="canonical" href={absoluteUrl(locale)} />
     {
       locales.map((alternateLocale) => (
-        <link rel="alternate" hreflang={alternateLocale} href={localeUrl(alternateLocale)} />
+        <link rel="alternate" hreflang={alternateLocale} href={absoluteUrl(alternateLocale)} />
       ))
     }
-    <link rel="alternate" hreflang="x-default" href={localeUrl(defaultLocale)} />
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(defaultLocale)} />
     <title>{title}</title>
 
     <script is:inline define:vars={{ accentColorIds, accentColorKey }}>
@@ -53,7 +55,7 @@ const accentColorIds = accentColors.map(({ id }) => id);
     </script>
   </head>
   <body>
-    <Header />
+    <Header localizedUrls={localizedUrls} />
     <main>
       <slot />
     </main>
