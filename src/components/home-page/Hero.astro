@@ -2,6 +2,7 @@
 import { resolveLocale } from "../../i18n/locales";
 import { translations } from "../../i18n/translations";
 import AboutMe from "./about-me/AboutMe.astro";
+import SocialLinks from "../social-links/SocialLinks.astro";
 
 const locale = resolveLocale(Astro.currentLocale);
 const heroContent = translations[locale].hero;
@@ -11,6 +12,7 @@ const heroContent = translations[locale].hero;
   <h1 class="hero-name">{heroContent.name}</h1>
   <p class="hero-title">{heroContent.description}</p>
   <AboutMe />
+  <SocialLinks />
 </section>
 
 <style>
@@ -25,6 +27,10 @@ const heroContent = translations[locale].hero;
 
   .hero-section :global(.about-me-description) {
     margin-top: 1.5rem;
+  }
+
+  .hero-section :global(.social-links) {
+    margin-top: 1rem;
   }
 
   .hero-name {

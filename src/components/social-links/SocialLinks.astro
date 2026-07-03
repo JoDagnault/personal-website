@@ -1,0 +1,49 @@
+---
+import { socialLinks } from "./socialLinks";
+import { icons } from "./icons";
+---
+
+<ul class="social-links">
+  {
+    socialLinks.map((socialLink) => {
+      const Icon = icons[socialLink.icon];
+      return (
+        <li>
+          <a
+            href={socialLink.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={socialLink.name}
+            title={socialLink.name}
+          >
+            <Icon class="social-icon" />
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    color: var(--text-color);
+  }
+
+  a:hover {
+    color: var(--accent-color);
+  }
+
+  .social-icon {
+    width: clamp(2rem, 8vw, 2.5rem);
+    height: clamp(2rem, 8vw, 2.5rem);
+  }
+</style>
