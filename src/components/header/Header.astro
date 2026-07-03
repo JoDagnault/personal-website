@@ -4,6 +4,7 @@ import LanguagePicker from "./controls/LanguagePicker.astro";
 import ThemeToggle from "./controls/ThemeToggle.astro";
 import AccentColorPicker from "./controls/accent-color-picker/AccentColorPicker.astro";
 import type { LocalizedUrls } from "../../i18n/urls";
+import HeaderControlsCluster from "./controls/HeaderControlsCluster.astro";
 
 interface Props {
   localizedUrls: LocalizedUrls;
@@ -14,9 +15,11 @@ const { localizedUrls } = Astro.props;
 
 <header>
   <HomeLink />
-  <AccentColorPicker />
-  <ThemeToggle />
-  <LanguagePicker localizedUrls={localizedUrls} />
+  <HeaderControlsCluster>
+    <AccentColorPicker />
+    <ThemeToggle />
+    <LanguagePicker localizedUrls={localizedUrls} />
+  </HeaderControlsCluster>
 </header>
 
 <style>

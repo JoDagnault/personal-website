@@ -1,0 +1,50 @@
+---
+import { Menu } from "@lucide/astro";
+---
+
+<div class="header-controls-cluster">
+  <button class="header-button header-controls-cluster-button" aria-expanded="false">
+    <Menu />
+  </button>
+
+  <div class="header-controls-cluster-menu">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .header-controls-cluster {
+    display: flex;
+  }
+
+  .header-controls-cluster-menu {
+    display: flex;
+  }
+
+  @media (width < 640px) {
+    .header-controls-cluster-menu {
+      display: none;
+    }
+
+    .header-controls-cluster-button[aria-expanded="true"] ~ .header-controls-cluster-menu {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media (width >= 640px) {
+    .header-controls-cluster-button {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const headerControlsClusterButton = document.querySelector(".header-controls-cluster-button")!;
+
+  headerControlsClusterButton.addEventListener("click", () => {
+    const toggledAriaExpanded =
+      headerControlsClusterButton.ariaExpanded === "true" ? "false" : "true";
+    headerControlsClusterButton.setAttribute("aria-expanded", toggledAriaExpanded);
+  });
+</script>
