@@ -22,7 +22,9 @@ import { Moon, Sun } from "@lucide/astro";
 <script>
   import { toggleTheme } from "../../../theme";
 
-  const themeToggleButton = document.querySelector(".theme-toggle-button")!;
+  const THEME_TOGGLE_BUTTON_SELECTOR = ".theme-toggle-button";
+
+  const themeToggleButton = document.querySelector(THEME_TOGGLE_BUTTON_SELECTOR)!;
 
   themeToggleButton.addEventListener("click", () => {
     toggleTheme();

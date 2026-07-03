@@ -1,3 +1,4 @@
+const CONTROL_SELECTOR = ".header-control";
 const TRIGGER_SELECTOR = ".header-button[aria-expanded]";
 const OPEN_TRIGGER_SELECTOR = `header ${TRIGGER_SELECTOR}[aria-expanded="true"]`;
 const ACTION_SELECTOR = '[data-header-control="action"], .header-menu a, .header-menu button';
@@ -38,7 +39,7 @@ const closeInactiveMenus = (target: Element) => {
 };
 
 const staysOpenAfterClick = (trigger: HTMLElement, target: Element): boolean => {
-  const control = trigger.closest<HTMLElement>(".header-control");
+  const control = trigger.closest<HTMLElement>(CONTROL_SELECTOR);
 
   if (!control) {
     return false;

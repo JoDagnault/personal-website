@@ -46,9 +46,9 @@ import { accentColorCssVariable, accentColors } from "./accentColors.ts";
 <script>
   import { isAccentColorId, setAccentColor } from "./accentColors.ts";
 
-  const colorButtons = document.querySelectorAll<HTMLButtonElement>(
-    ".accent-color-picker-menu-button",
-  );
+  const COLOR_BUTTON_SELECTOR = ".accent-color-picker-menu-button";
+
+  const colorButtons = document.querySelectorAll<HTMLButtonElement>(COLOR_BUTTON_SELECTOR);
 
   for (const colorButton of colorButtons) {
     colorButton.addEventListener("click", () => {
