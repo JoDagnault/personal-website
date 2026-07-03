@@ -1,12 +1,6 @@
-type HeaderMenu = {
-  root: HTMLElement;
-  button: HTMLButtonElement;
-  panel: HTMLElement;
-};
-
 export const initHeaderMenus = () => {
   const headerControls = document.querySelectorAll<HTMLElement>(".header-control");
-  const menus: HeaderMenu[] = [];
+  const menuButtons: HTMLButtonElement[] = [];
 
   for (const headerControl of headerControls) {
     const headerButton = headerControl.querySelector<HTMLButtonElement>(".header-button");
@@ -17,7 +11,7 @@ export const initHeaderMenus = () => {
 
     if (headerControl.dataset.headerControl === "action") {
       headerButton.addEventListener("click", () => {
-        closeAllMenus(menus);
+        closeAllMenus(menuButtons);
       });
 
       continue;
@@ -30,16 +24,10 @@ export const initHeaderMenus = () => {
         continue;
       }
 
-      const menu: HeaderMenu = {
-        root: headerControl,
-        button: headerButton,
-        panel: headerMenu,
-      };
-
-      menus.push(menu);
+      menuButtons.push(headerButton);
 
       headerButton.addEventListener("click", () => {
-        toggleMenu(menu, menus);
+        toggleMenu(headerButton, menuButtons);
       });
 
       headerMenu.addEventListener("click", (event) => {
@@ -55,26 +43,24 @@ export const initHeaderMenus = () => {
           return;
         }
 
-        closeAllMenus(menus);
+        closeAllMenus(menuButtons);
       });
     }
   }
 };
 
-export const toggleMenu = (menu: HeaderMenu, menus: HeaderMenu[]) => {
-  const wasOpen = !menu.panel.hidden;
+export const toggleMenu = (button: HTMLButtonElement, buttons: HTMLButtonElement[]) => {
+  const wasOpen = button.ariaExpanded === "true";
 
-  closeAllMenus(menus);
+  closeAllMenus(buttons);
 
   if (!wasOpen) {
-    menu.panel.hidden = false;
-    menu.button.ariaExpanded = "true";
+    button.ariaExpanded = "true";
   }
 };
 
-export const closeAllMenus = (menus: HeaderMenu[]) => {
-  for (const menu of menus) {
-    menu.button.ariaExpanded = "false";
-    menu.panel.hidden = true;
+export const closeAllMenus = (buttons: HTMLButtonElement[]) => {
+  for (const button of buttons) {
+    button.ariaExpanded = "false";
   }
 };

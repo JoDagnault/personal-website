@@ -15,7 +15,7 @@ const currentLocale = resolveLocale(Astro.currentLocale);
   <button class="header-button language-picker-button" aria-expanded="false"
     >{localeNames[currentLocale]}</button
   >
-  <ul class="language-picker-menu header-menu" hidden>
+  <ul class="language-picker-menu header-menu">
     {
       locales.map((locale) => (
         <li class="language-picker-menu-item">
@@ -33,6 +33,10 @@ const currentLocale = resolveLocale(Astro.currentLocale);
 </div>
 
 <style>
+  .language-picker-menu {
+    min-width: 9rem;
+  }
+
   .language-picker-menu-link[aria-current="true"] {
     color: var(--accent-color);
   }

@@ -8,7 +8,7 @@ import { accentColorCssVariable, accentColors } from "./accentColors.ts";
     <ColorPill color="var(--accent-color)" />
   </button>
 
-  <ul class="accent-color-picker-menu header-menu" hidden>
+  <ul class="accent-color-picker-menu header-menu">
     {
       accentColors.map((accentColor) => (
         <li class="accent-color-picker-menu-item">
@@ -26,11 +26,6 @@ import { accentColorCssVariable, accentColors } from "./accentColors.ts";
 </div>
 
 <style>
-  .accent-color-picker-menu:not([hidden]) {
-    display: block;
-    min-width: 0;
-  }
-
   .accent-color-picker-menu-button {
     display: flex;
     align-items: center;
