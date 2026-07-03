@@ -12,17 +12,18 @@ const locale = resolveLocale(Astro.currentLocale);
 const AboutMeContent = aboutContentByLang[locale];
 ---
 
-<section class="about-me-section">
-  <div class="about-me-description">
-    <AboutMeContent />
-  </div>
-</section>
+<div class="about-me-description">
+  <AboutMeContent />
+</div>
 
 <style>
   .about-me-description {
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    line-height: 1.5;
+    max-width: 32rem;
+    margin-inline: auto;
+    font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+    line-height: 1.6;
     text-align: center;
+    color: var(--muted-text-color);
   }
 
   .about-me-description :global(p) {

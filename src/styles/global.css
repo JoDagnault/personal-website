@@ -13,6 +13,7 @@
   --accent-blue: #a8cef5;
   --accent-orange: #f3ba7f;
   --accent-color: var(--accent-green);
+  --muted-text-color: #9a9aa4;
   --border-color: #4d4d4d;
   --hover-background-color: #24242b;
   --header-menu-shadow-color: rgb(0 0 0 / 0.45);
@@ -29,6 +30,7 @@
   --accent-blue: #5e84b7;
   --accent-orange: #bd7040;
   --accent-color: var(--accent-green);
+  --muted-text-color: #5c5c66;
   --border-color: #d0d0d0;
   --hover-background-color: #f1f1f1;
   --header-menu-shadow-color: rgb(0 0 0 / 0.14);

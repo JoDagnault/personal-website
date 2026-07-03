@@ -1,36 +1,42 @@
 ---
 import { resolveLocale } from "../i18n/locales";
 import { translations } from "../i18n/translations";
+import AboutMe from "./about-me/AboutMe.astro";
 
 const locale = resolveLocale(Astro.currentLocale);
 const heroContent = translations[locale].hero;
 ---
 
 <section class="hero-section">
-  <div class="hero-content">
-    <h1 class="hero-name">{heroContent.name}</h1>
-    <p class="hero-description">{heroContent.description}</p>
-  </div>
+  <h1 class="hero-name">{heroContent.name}</h1>
+  <p class="hero-title">{heroContent.description}</p>
+  <AboutMe />
 </section>
 
 <style>
   .hero-section {
+    flex: 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    min-height: clamp(200px, 40vh, 250px);
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .hero-section :global(.about-me-description) {
+    margin-top: 1.5rem;
   }
 
   .hero-name {
     margin: 0;
-    font-size: clamp(2rem, 6vw, 4rem);
-    text-align: center;
+    font-size: clamp(1.75rem, 8.5vw, 5rem);
+    line-height: 1.1;
   }
 
-  .hero-description {
+  .hero-title {
     margin: 0;
-    font-size: clamp(1.1rem, 3vw, 2rem);
-    text-align: center;
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    font-weight: 500;
     color: var(--accent-color);
   }
 </style>
