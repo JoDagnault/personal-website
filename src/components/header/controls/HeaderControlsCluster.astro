@@ -2,7 +2,7 @@
 import { Menu } from "@lucide/astro";
 ---
 
-<div class="header-control header-controls-cluster">
+<div class="header-control header-controls-cluster" data-header-control="group">
   <button
     class="header-button header-controls-cluster-button"
     aria-label="Menu"
@@ -53,13 +53,3 @@ import { Menu } from "@lucide/astro";
     }
   }
 </style>
-
-<script>
-  const headerControlsClusterButton = document.querySelector(".header-controls-cluster-button")!;
-
-  headerControlsClusterButton.addEventListener("click", () => {
-    const toggledAriaExpanded =
-      headerControlsClusterButton.ariaExpanded === "true" ? "false" : "true";
-    headerControlsClusterButton.setAttribute("aria-expanded", toggledAriaExpanded);
-  });
-</script>

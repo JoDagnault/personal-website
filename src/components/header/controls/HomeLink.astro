@@ -6,7 +6,7 @@ import { localizedHomePageUrls } from "../../../i18n/urls";
 const currentLocale = resolveLocale(Astro.currentLocale);
 ---
 
-<a class="home-link" href={localizedHomePageUrls[currentLocale]}>
+<a class="home-link" href={localizedHomePageUrls[currentLocale]} data-header-control="action">
   {translations[currentLocale].siteTitle}
 </a>
 

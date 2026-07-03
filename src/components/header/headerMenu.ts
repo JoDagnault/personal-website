@@ -1,97 +1,73 @@
+const TRIGGER_SELECTOR = ".header-button[aria-expanded]";
+const OPEN_TRIGGER_SELECTOR = `header ${TRIGGER_SELECTOR}[aria-expanded="true"]`;
+const ACTION_SELECTOR = '[data-header-control="action"], .header-menu a, .header-menu button';
+
 export const initHeaderControlsEvents = () => {
-  initHeaderMenusToggle();
-  initHeaderMenusDismiss();
+  document.addEventListener("click", handleHeaderClick);
+  document.addEventListener("keydown", handleHeaderKeydown);
 };
 
-const initHeaderMenusToggle = () => {
-  const headerControls = document.querySelectorAll<HTMLElement>(".header-control");
-  const menuButtons: HTMLButtonElement[] = [];
+const handleHeaderClick = (event: MouseEvent) => {
+  const target = event.target;
 
-  for (const headerControl of headerControls) {
-    const headerButton = headerControl.querySelector<HTMLButtonElement>(".header-button");
+  if (!(target instanceof Element)) {
+    return;
+  }
 
-    if (!headerButton) {
-      continue;
-    }
+  closeInactiveMenus(target);
 
-    if (headerControl.dataset.headerControl === "action") {
-      headerButton.addEventListener("click", () => {
-        closeAllMenus(menuButtons);
-      });
+  const trigger = target.closest<HTMLElement>(TRIGGER_SELECTOR);
 
-      continue;
-    }
+  if (trigger) {
+    toggleTrigger(trigger);
+  }
+};
 
-    if (headerControl.dataset.headerControl === "menu") {
-      const headerMenu = headerControl.querySelector<HTMLElement>(".header-menu");
+const handleHeaderKeydown = (event: KeyboardEvent) => {
+  if (event.key === "Escape") {
+    closeAllMenus();
+  }
+};
 
-      if (!headerMenu) {
-        continue;
-      }
-
-      menuButtons.push(headerButton);
-
-      headerButton.addEventListener("click", () => {
-        toggleMenu(headerButton, menuButtons);
-      });
-
-      headerMenu.addEventListener("click", (event) => {
-        const target = event.target;
-
-        if (!(target instanceof Element)) {
-          return;
-        }
-
-        const menuItemAction = target.closest("a, button");
-
-        if (!menuItemAction || !headerMenu.contains(menuItemAction)) {
-          return;
-        }
-
-        closeAllMenus(menuButtons);
-      });
+const closeInactiveMenus = (target: Element) => {
+  for (const trigger of openTriggers()) {
+    if (!staysOpenAfterClick(trigger, target)) {
+      trigger.ariaExpanded = "false";
     }
   }
 };
 
-const toggleMenu = (button: HTMLButtonElement, buttons: HTMLButtonElement[]) => {
-  const wasOpen = button.ariaExpanded === "true";
+const staysOpenAfterClick = (trigger: HTMLElement, target: Element): boolean => {
+  const control = trigger.closest<HTMLElement>(".header-control");
 
-  closeAllMenus(buttons);
-
-  if (!wasOpen) {
-    button.ariaExpanded = "true";
+  if (!control) {
+    return false;
   }
-};
 
-const closeAllMenus = (buttons: HTMLButtonElement[]) => {
-  for (const button of buttons) {
-    button.ariaExpanded = "false";
+  // An action settles a setting (theme toggle, colour switch):
+  // it collapses dropdowns but keeps the mobile burger group open so several
+  // settings can be changed in a row.
+  if (isActionClick(target)) {
+    return isGroupControl(control);
   }
+
+  // Any other click keeps open only the menu it landed inside, which drives
+  // exclusive dropdowns and click-outside dismiss.
+  return control.contains(target);
 };
 
-const initHeaderMenusDismiss = () => {
-  document.addEventListener("click", (event) => {
-    const target = event.target;
+const isActionClick = (target: Element) => target.closest(ACTION_SELECTOR) !== null;
 
-    if (target instanceof Element && target.closest(".header-control")) {
-      return;
-    }
+const isGroupControl = (control: HTMLElement) => control.dataset.headerControl === "group";
 
-    closeOpenDropdowns();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeOpenDropdowns();
-    }
-  });
+const toggleTrigger = (trigger: HTMLElement) => {
+  trigger.ariaExpanded = trigger.ariaExpanded === "true" ? "false" : "true";
 };
 
-const closeOpenDropdowns = () => {
-  const openTriggers = document.querySelectorAll<HTMLElement>('header [aria-expanded="true"]');
-
-  for (const trigger of openTriggers) {
+const closeAllMenus = () => {
+  for (const trigger of openTriggers()) {
     trigger.ariaExpanded = "false";
   }
 };
+
+const openTriggers = () => document.querySelectorAll<HTMLElement>(OPEN_TRIGGER_SELECTOR);
