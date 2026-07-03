@@ -64,3 +64,29 @@ export const closeAllMenus = (buttons: HTMLButtonElement[]) => {
     button.ariaExpanded = "false";
   }
 };
+
+export const initHeaderDismiss = () => {
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+
+    if (target instanceof Element && target.closest(".header-control")) {
+      return;
+    }
+
+    closeOpenDropdowns();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeOpenDropdowns();
+    }
+  });
+};
+
+const closeOpenDropdowns = () => {
+  const openTriggers = document.querySelectorAll<HTMLElement>('header [aria-expanded="true"]');
+
+  for (const trigger of openTriggers) {
+    trigger.ariaExpanded = "false";
+  }
+};
