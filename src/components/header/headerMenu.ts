@@ -1,4 +1,9 @@
-export const initHeaderMenus = () => {
+export const initHeaderControlsEvents = () => {
+  initHeaderMenusToggle();
+  initHeaderMenusDismiss();
+};
+
+const initHeaderMenusToggle = () => {
   const headerControls = document.querySelectorAll<HTMLElement>(".header-control");
   const menuButtons: HTMLButtonElement[] = [];
 
@@ -49,7 +54,7 @@ export const initHeaderMenus = () => {
   }
 };
 
-export const toggleMenu = (button: HTMLButtonElement, buttons: HTMLButtonElement[]) => {
+const toggleMenu = (button: HTMLButtonElement, buttons: HTMLButtonElement[]) => {
   const wasOpen = button.ariaExpanded === "true";
 
   closeAllMenus(buttons);
@@ -59,13 +64,13 @@ export const toggleMenu = (button: HTMLButtonElement, buttons: HTMLButtonElement
   }
 };
 
-export const closeAllMenus = (buttons: HTMLButtonElement[]) => {
+const closeAllMenus = (buttons: HTMLButtonElement[]) => {
   for (const button of buttons) {
     button.ariaExpanded = "false";
   }
 };
 
-export const initHeaderDismiss = () => {
+const initHeaderMenusDismiss = () => {
   document.addEventListener("click", (event) => {
     const target = event.target;
 
