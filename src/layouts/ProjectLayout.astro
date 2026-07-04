@@ -1,17 +1,22 @@
 ---
 import Layout from "./Layout.astro";
+import ProjectTags from "../components/projects/ProjectTags.astro";
 import { type LocalizedUrls } from "../i18n/urls.ts";
 
 interface Props {
   title: string;
   description: string;
+  tags: string[];
   localizedUrls: LocalizedUrls;
 }
 
-const { title, description, localizedUrls } = Astro.props;
+const { title, description, tags, localizedUrls } = Astro.props;
 ---
 
 <Layout title={title} description={description} localizedUrls={localizedUrls}>
-  <h1>{title}</h1>
-  <slot />
+  <article class="project">
+    <h1>{title}</h1>
+    <ProjectTags tags={tags} />
+    <slot />
+  </article>
 </Layout>
