@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { projectUrl } from "../../i18n/urls.ts";
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+---
+
+<a class="project-card" href={projectUrl(project)}>
+  <h3 class="project-title">{project.data.title}</h3>
+  <p class="project-description">{project.data.description}</p>
+  <ul class="project-list">
+    {project.data.tags.map((tag) => <li class="project-tag"> {tag} </li>)}
+  </ul>
+</a>
+
+<style>
+  .project-card {
+    display: block;
+    text-decoration: none;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+  }
+
+  .project-card:visited {
+    color: var(--text-color);
+  }
+
+  .project-title {
+  }
+
+  .project-description {
+  }
+
+  .project-list {
+    display: flex;
+    padding: 0;
+    gap: 1rem;
+    list-style: none;
+  }
+</style>

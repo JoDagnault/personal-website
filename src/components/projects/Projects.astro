@@ -3,6 +3,7 @@ import { resolveLocale } from "../../i18n/locales";
 import { translations } from "../../i18n/translations";
 import { getCollection } from "astro:content";
 import { projectUrl } from "../../i18n/urls.ts";
+import ProjectCard from "./ProjectCard.astro";
 
 const locale = resolveLocale(Astro.currentLocale);
 
@@ -12,21 +13,43 @@ const allProjects = await getCollection("projects", ({ id }) => {
 });
 ---
 
-<h2>{projectsContent.title}</h2>
-<ul>
+<h2 class="project-section-title">{projectsContent.title}</h2>
+<ul class="project-list">
   {
     allProjects.map((project) => (
       <li>
-        <a href={projectUrl(project)}>{project.data.title}</a>
+        <ProjectCard project={project} />
       </li>
     ))
   }
 </ul>
 
 <style>
-  h2 {
+  .project-section-title {
     margin: 0;
     font-size: clamp(2rem, 6vw, 4rem);
     text-align: center;
+  }
+
+  .project-list {
+    display: grid;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .project-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .project-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 </style>
