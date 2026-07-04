@@ -7,12 +7,13 @@ import { type LocalizedUrls } from "../i18n/urls.ts";
 interface Props {
   title: string;
   description: string;
+  date: string;
   tags: string[];
   repoUrl?: string;
   localizedUrls: LocalizedUrls;
 }
 
-const { title, description, tags, repoUrl, localizedUrls } = Astro.props;
+const { title, description, date, tags, repoUrl, localizedUrls } = Astro.props;
 ---
 
 <Layout title={title} description={description} localizedUrls={localizedUrls}>
@@ -22,6 +23,7 @@ const { title, description, tags, repoUrl, localizedUrls } = Astro.props;
       {repoUrl && <SocialLink link={{ name: "GitHub", url: repoUrl, icon: "github" }} />}
     </div>
     <ProjectTags tags={tags} />
+    <span class="project-date">{date}</span>
     <slot />
   </article>
 </Layout>
@@ -37,7 +39,23 @@ const { title, description, tags, repoUrl, localizedUrls } = Astro.props;
     gap: 1rem;
   }
 
+  .project-heading h1 {
+    margin: 0;
+  }
+
   .project :global(.project-tags) {
-    margin: 1rem 0 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .project-date {
+    display: block;
+    margin-bottom: 2rem;
+    color: var(--muted-text-color);
+    font-size: 0.9rem;
+  }
+
+  .project :global(p) {
+    font-size: 1.25rem;
+    line-height: 1.6;
   }
 </style>
