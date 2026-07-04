@@ -16,10 +16,10 @@ export const translations = {
   en: {
     siteTitle: "Jonathan Dagnault",
     metaDescription:
-      "Jonathan Dagnault’s portfolio as a full-stack software developer, showcasing projects and technical skills.",
+      "Jonathan Dagnault’s portfolio as a software developer, showcasing projects and technical skills.",
     hero: {
       name: "Jonathan Dagnault",
-      description: "Full-Stack Software Developer",
+      description: "Software Developer",
     },
     projects: {
       title: "Projects",
@@ -28,10 +28,10 @@ export const translations = {
   fr: {
     siteTitle: "Jonathan Dagnault",
     metaDescription:
-      "Portfolio de Jonathan Dagnault, développeur logiciel full-stack, présentant ses projets et ses compétences techniques.",
+      "Portfolio de Jonathan Dagnault, développeur logiciel, présentant ses projets et ses compétences techniques.",
     hero: {
       name: "Jonathan Dagnault",
-      description: "Développeur logiciel full-stack",
+      description: "Développeur logiciel",
     },
     projects: {
       title: "Projets",
