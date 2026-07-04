@@ -1,26 +1,15 @@
 ---
 import { socialLinks } from "./socialLinks";
-import { icons } from "./icons";
+import SocialLink from "./SocialLink.astro";
 ---
 
 <ul class="social-links">
   {
-    socialLinks.map((socialLink) => {
-      const Icon = icons[socialLink.icon];
-      return (
-        <li>
-          <a
-            href={socialLink.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={socialLink.name}
-            title={socialLink.name}
-          >
-            <Icon class="social-icon" />
-          </a>
-        </li>
-      );
-    })
+    socialLinks.map((socialLink) => (
+      <li>
+        <SocialLink {...socialLink} />
+      </li>
+    ))
   }
 </ul>
 
@@ -32,18 +21,5 @@ import { icons } from "./icons";
     margin: 0;
     padding: 0;
     list-style: none;
-  }
-
-  a {
-    color: var(--text-color);
-  }
-
-  a:hover {
-    color: var(--accent-color);
-  }
-
-  .social-icon {
-    width: clamp(2rem, 8vw, 2.5rem);
-    height: clamp(2rem, 8vw, 2.5rem);
   }
 </style>

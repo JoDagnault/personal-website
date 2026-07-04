@@ -1,22 +1,43 @@
 ---
 import Layout from "./Layout.astro";
 import ProjectTags from "../components/projects/ProjectTags.astro";
+import SocialLink from "../components/social-links/SocialLink.astro";
 import { type LocalizedUrls } from "../i18n/urls.ts";
 
 interface Props {
   title: string;
   description: string;
   tags: string[];
+  repoUrl?: string;
   localizedUrls: LocalizedUrls;
 }
 
-const { title, description, tags, localizedUrls } = Astro.props;
+const { title, description, tags, repoUrl, localizedUrls } = Astro.props;
 ---
 
 <Layout title={title} description={description} localizedUrls={localizedUrls}>
   <article class="project">
-    <h1>{title}</h1>
+    <div class="project-heading">
+      <h1>{title}</h1>
+      {repoUrl && <SocialLink name="GitHub" url={repoUrl} icon="github" />}
+    </div>
     <ProjectTags tags={tags} />
     <slot />
   </article>
 </Layout>
+
+<style>
+  .project {
+    text-align: left;
+  }
+
+  .project-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .project :global(.project-tags) {
+    margin: 1rem 0 1.5rem;
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import { icons } from "./icons";
+import type { SocialIcon } from "./socialLinks";
+
+interface Props {
+  name: string;
+  url: string;
+  icon: SocialIcon;
+}
+
+const { name, url, icon } = Astro.props;
+const Icon = icons[icon];
+---
+
+<a href={url} target="_blank" rel="noopener noreferrer" aria-label={name} title={name}>
+  <Icon class="social-icon" />
+</a>
+
+<style>
+  a {
+    color: var(--text-color);
+  }
+
+  a:hover {
+    color: var(--accent-color);
+  }
+
+  .social-icon {
+    width: clamp(2rem, 8vw, 2.5rem);
+    height: clamp(2rem, 8vw, 2.5rem);
+  }
+</style>
