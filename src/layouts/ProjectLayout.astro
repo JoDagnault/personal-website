@@ -19,7 +19,7 @@ const { title, description, tags, repoUrl, localizedUrls } = Astro.props;
   <article class="project">
     <div class="project-heading">
       <h1>{title}</h1>
-      {repoUrl && <SocialLink name="GitHub" url={repoUrl} icon="github" />}
+      {repoUrl && <SocialLink link={{ name: "GitHub", url: repoUrl, icon: "github" }} />}
     </div>
     <ProjectTags tags={tags} />
     <slot />

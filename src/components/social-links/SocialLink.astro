@@ -1,14 +1,13 @@
 ---
 import { icons } from "./icons";
-import type { SocialIcon } from "./socialLinks";
+import type { SocialLink } from "./socialLinks";
 
 interface Props {
-  name: string;
-  url: string;
-  icon: SocialIcon;
+  link: SocialLink;
 }
 
-const { name, url, icon } = Astro.props;
+const { link } = Astro.props;
+const { name, url, icon } = link;
 const Icon = icons[icon];
 ---
 
