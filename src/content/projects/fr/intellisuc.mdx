@@ -1,0 +1,55 @@
+---
+key: "intellisuc"
+title: "IntelliSuc"
+description: "Un système intelligent de contrôle des zones de succion d'une table de découpe CNC"
+date: "Hiver 2026"
+tags: ["IoT", "Python", "C++", "Vue", "OpenFactory"]
+---
+
+## Qu'est-ce que c'est
+
+IntelliSuc est un système intelligent de contrôle des zones de succion d'une
+table de découpe CNC.
+
+Une table de découpe CNC maintient les panneaux de bois en place grâce à une
+table aspirante divisée en plusieurs zones de succion. Activer des zones
+qu'aucun panneau ne recouvre gaspille de la succion. IntelliSuc automatise et
+optimise ce contrôle. Il détecte quelles zones sont recouvertes par les
+panneaux posés sur la table, active seulement celles qui sont utiles et
+recommande des dispositions de panneaux qui minimisent la perte de succion.
+
+## Contexte
+
+C'était un projet d'équipe de cinq personnes, réalisé pour le [Lab-Usine](https://lab-usine.fsg.ulaval.ca/) de
+l'Université Laval dans le cadre du cours de génie logiciel [GLO-3002](https://www.ulaval.ca/etudes/cours/glo-3002-projet-en-genie-logiciel). Nous avons
+travaillé avec un vrai client en itérations agiles de deux semaines avec des
+rencontres hebdomadaires et l'objectif était de réduire les interventions
+humaines sur la cellule de découpe et de faire des recommandations lorsqu'une
+intervention humaine est inévitable.
+
+## Stack et décisions
+
+Le système est bâti sur le framework d'IoT industriel
+[OpenFactory](https://github.com/openfactoryio).
+
+Un PLC écrit en C++ contrôle physiquement les valves de succion et se connecte à
+OpenFactory via un connecteur OPC UA. La logique applicative réside dans un
+ensemble d'apps OpenFactory en Python qui communiquent à travers Kafka : un serveur
+WebSocket qui diffuse l'état en direct au tableau de bord et reçoit ses
+commandes, un contrôleur qui envoie les commandes au PLC, une app qui détermine
+quelles zones activer en mode automatique et une app qui calcule les meilleures
+dispositions de panneaux pour minimiser la perte de succion.
+
+Le tableau de bord est une application Vue et TypeScript, conçue comme une
+application web progressive (PWA) et pensée pour être utilisée aussi bien sur un
+ordinateur de bureau que sur une tablette mobile. Elle est compilée
+en site statique et servie par nginx. L'ensemble du stack tourne dans des
+conteneurs et est développé dans un dev container pour un environnement
+reproductible.
+
+## Mon rôle
+
+Je me suis concentré sur le backend. J'ai travaillé principalement sur le
+serveur WebSocket, l'app de mode automatique et l'app de suggestions. J'ai aussi
+travaillé sur l'environnement de développement et conçu des scripts pour
+améliorer l'expérience développeur.

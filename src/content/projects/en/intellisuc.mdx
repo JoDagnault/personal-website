@@ -1,0 +1,50 @@
+---
+key: "intellisuc"
+title: "IntelliSuc"
+description: "An intelligent control system for the suction zones of a CNC cutting table"
+date: "Winter 2026"
+tags: ["IoT", "Python", "C++", "Vue", "Docker"]
+---
+
+## What it is
+
+IntelliSuc is an intelligent control system for the suction zones of a CNC
+cutting table.
+
+A CNC cutting table holds wood panels in place with a vacuum table divided into
+several suction zones. Activating zones that no panel covers wastes suction.
+IntelliSuc automates and optimizes that control. It detects which zones are
+covered by the panels on the table, activates only the useful ones, and
+recommends panel placements that minimize suction loss.
+
+## Context
+
+This was a team project of five, built for the [Lab-Usine](https://lab-usine.fsg.ulaval.ca/) at Université Laval as
+part of the [GLO-3002](https://www.ulaval.ca/etudes/cours/glo-3002-projet-en-genie-logiciel) software engineering course. We worked with a real client
+in two-week agile iterations with weekly meetings, and the goal was to reduce
+human intervention on the cutting cell and to make recommendations when a human
+intervention is unavoidable.
+
+## Stack & decisions
+
+The system is built on the [OpenFactory](https://github.com/openfactoryio)
+industrial IoT framework.
+
+A PLC written in C++ physically drives the suction valves and connects to
+OpenFactory through an OPC UA connector. The application logic lives in a set of
+Python OpenFactory apps communicating over Kafka: a WebSocket server that streams
+live state to the dashboard and receives its commands, a controller that sends
+commands to the PLC, an app that computes which zones to activate in automatic
+mode, and an app that computes the best panel placements to minimize suction loss.
+
+The dashboard is a Vue and TypeScript application, built as a progressive web
+app (PWA) and designed to be used both on a desktop and on a mobile tablet on
+the shop floor. It is compiled to a static site and served by nginx. The whole
+stack runs in containers and is developed inside a dev container for a
+reproducible environment.
+
+## My role
+
+I focused on the backend. I worked mainly on the WebSocket server, the
+automatic-mode app, and the suggestions app. I also worked on the development
+environment and wrote scripts to improve the developer experience.
