@@ -7,9 +7,11 @@ import ProjectCard from "./ProjectCard.astro";
 const locale = resolveLocale(Astro.currentLocale);
 
 const projectsContent = translations[locale].projects;
-const allProjects = await getCollection("projects", ({ id }) => {
-  return id.startsWith(`${locale}/`);
-});
+const allProjects = (
+  await getCollection("projects", ({ id }) => {
+    return id.startsWith(`${locale}/`);
+  })
+).sort((a, b) => b.data.sortDate.localeCompare(a.data.sortDate));
 ---
 
 <h2 class="project-section-title">{projectsContent.title}</h2>

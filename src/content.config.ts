@@ -9,6 +9,7 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.string(),
+    sortDate: z.string().regex(/^\d{4}-\d{2}$/),
     tags: z.array(z.string()),
     repoUrl: z.string().url().optional(),
   }),
